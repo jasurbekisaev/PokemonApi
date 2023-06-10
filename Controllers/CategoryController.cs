@@ -54,7 +54,7 @@ namespace PokemonApi.Controllers
         }
 
         [HttpGet("pokemon/{categoryId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
         [ProducesResponseType(400)]
         public IActionResult GetPokemonByCategoryId(int categoryId)
         {

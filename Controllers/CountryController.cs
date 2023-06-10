@@ -20,7 +20,7 @@ namespace PokemonApi.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Country>))]
         public IActionResult GetCountries()
         {
             var countries = _mapper.Map<List<CountryDto>>(_countryRepository.GetCountries());
