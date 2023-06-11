@@ -1,4 +1,5 @@
-﻿using PokemonApi.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PokemonApi.Context;
 using PokemonApi.Interfaces;
 using PokemonApi.Models;
 
@@ -12,14 +13,9 @@ public class ReviewerRepository : IReviewerRepository
         _context = context;
     }
 
-    public ICollection<Reviewer> GetAllReviewsByReviewer(int reviewerId)
-    {
-        return _context.Reviews.Where(r => r.Reviewer.Id == reviewerId).Select(r => r.Reviewer).ToList();
-    }
-
     public Reviewer? GetReviewer(int reviewerId)
     {
-        return _context.Reviewers.FirstOrDefault(r => r.Id == reviewerId);
+        return _context.Reviewers.Where(r => r.Id == reviewerId).Include(e => e.Reviews).FirstOrDefault();
     }
 
     public ICollection<Reviewer> GetReviewers()
@@ -30,5 +26,10 @@ public class ReviewerRepository : IReviewerRepository
     public bool ReviewerExists(int reviewerId)
     {
         return _context.Reviewers.Any(r => r.Id == reviewerId);
+    }
+
+    public ICollection<Review> GetAllReviewsByReviewer(int reviewerId)
+    {
+        return _context.Reviews.Where(r => r.Reviewer.Id == reviewerId).ToList();
     }
 }

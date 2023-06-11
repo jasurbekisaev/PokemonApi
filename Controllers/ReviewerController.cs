@@ -39,7 +39,7 @@ public class ReviewerController : ControllerBase
     [ProducesResponseType(400)]
     public IActionResult GetReviewer(int reviewerId)
     {
-        if (_reviewerRepository.ReviewerExists(reviewerId))
+        if (!_reviewerRepository.ReviewerExists(reviewerId))
             return NotFound();
 
         var reviewer = _mapper.Map<ReviewerDto>(_reviewerRepository.GetReviewer(reviewerId));
@@ -50,12 +50,12 @@ public class ReviewerController : ControllerBase
         return Ok(reviewer);
     }
 
-    [HttpGet("/reviewers/{reviewerId}")]
+    [HttpGet("/reviews/{reviewerId}")]
     [ProducesResponseType(200, Type = typeof(Reviewer))]
     [ProducesResponseType(400)]
     public IActionResult GetAllReviewsByReviewer(int reviewerId)
     {
-        var reviews = _mapper.Map<ReviewDto>(_reviewerRepository.GetAllReviewsByReviewer(reviewerId));
+        var reviews = _mapper.Map<List<ReviewerDto>>(_reviewerRepository.GetAllReviewsByReviewer(reviewerId));
 
         if (!ModelState.IsValid)
         {
