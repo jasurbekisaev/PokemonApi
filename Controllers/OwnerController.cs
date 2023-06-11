@@ -32,7 +32,7 @@ public class OwnerController : ControllerBase
     }
 
 
-    [HttpGet("{ownerId}")]
+    [HttpGet("/owner/{ownerId}")]
     [ProducesResponseType(200, Type = typeof(Owner))]
     [ProducesResponseType(400)]
     public IActionResult GetOwner(int ownerId)

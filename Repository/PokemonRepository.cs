@@ -18,7 +18,7 @@ namespace PokemonApi.Repository
             return _context.Pokemons.OrderBy(p => p.Id).ToList();
         }
 
-        public Pokemon GetPokemon(int id)
+        public Pokemon? GetPokemon(int id)
         {
             return _context.Pokemons.Where(p => p.Id == id).FirstOrDefault();
         }

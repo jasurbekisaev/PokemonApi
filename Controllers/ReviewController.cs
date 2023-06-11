@@ -33,7 +33,7 @@ public class ReviewController : ControllerBase
     }
 
 
-    [HttpGet("{ownerId}")]
+    [HttpGet("/reviews/{ownerId}")]
     [ProducesResponseType(200, Type = typeof(Review))]
     [ProducesResponseType(400)]
     public IActionResult GetReview(int reviewId)
@@ -55,12 +55,12 @@ public class ReviewController : ControllerBase
     [ProducesResponseType(400)]
     public IActionResult GetReviewOfAPokemon(int pokeId)
     {
-        var review = _mapper.Map<List<ReviewDto>>(_reviewRepository.GetReviewsOfAPokemon(pokeId));
+        var reviews = _mapper.Map<List<ReviewDto>>(_reviewRepository.GetReviewsOfAPokemon(pokeId));
 
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-        return Ok(review);
+        return Ok(reviews);
     }
 }
