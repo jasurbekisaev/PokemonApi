@@ -32,4 +32,5 @@ public class ReviewerRepository : IReviewerRepository
     {
         return _context.Reviews.Where(r => r.Reviewer.Id == reviewerId).ToList();
     }
+
 }

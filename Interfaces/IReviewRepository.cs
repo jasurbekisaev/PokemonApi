@@ -1,12 +1,12 @@
 ﻿using PokemonApi.Models;
 
-namespace PokemonApi.Interfaces
+namespace PokemonApi.Interfaces;
+
+public interface IReviewRepository
 {
-    public interface IReviewRepository
-    {
-        ICollection<Review> GetReviews();
-        Review GetReview(int reviewId);
-        ICollection<Review> GetReviewsOfAPokemon(int pokeId);
-        bool ReviewExists(int reviewId);
-    }
+    ICollection<Review> GetReviews();
+    Review GetReview(int reviewId);
+    ICollection<Review> GetReviewsOfAPokemon(int pokeId);
+    bool ReviewExists(int reviewId);
+
 }

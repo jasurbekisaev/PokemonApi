@@ -72,4 +72,5 @@ public class ReviewerController : ControllerBase
         var reviewerExists = _reviewerRepository.ReviewerExists(reviewerId);
         return reviewerExists;
     }
+
 }
